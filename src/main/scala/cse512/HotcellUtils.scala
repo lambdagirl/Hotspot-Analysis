@@ -56,11 +56,11 @@ object HotcellUtils {
     (x1-x2)*(x1-x2) <=1 && (y1-y2)*(y1-y2) <= 1 &&  (z1-z2)*(z1-z2) <= 1
   }
 
-  def getNeighbors(x: Int, y: Int, z:Int): Int = {
+  def getNeighbors(x: Int, y: Int, z:Int, MinX:Double, MinY:Double, MinZ:Double, MaxX: Double, MaxY:Double, MaxZ:Double): Int = {
 
-    val xEdge = if (x == 1) 1 else 0
-    val yEdge = if (y == 1) 1 else 0
-    val zEdge = if (z == 1) 1 else 0
+    val xEdge = if (x >= MaxX || x <= MinX ) 1 else 0
+    val yEdge = if (y >= MaxY || y <= MinY )  1 else 0
+    val zEdge = if (z == MaxZ || z == MinZ )  1 else 0
     val total = xEdge + yEdge + zEdge
 
     if (total == 3) {
