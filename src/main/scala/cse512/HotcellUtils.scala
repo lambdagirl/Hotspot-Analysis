@@ -49,7 +49,7 @@ object HotcellUtils {
 
   // YOU NEED TO CHANGE THIS PART
   def boundContains(x: Int, y: Int, z:Int, minX: Double, minY: Double, minZ: Double, maxX: Double, maxY:Double, maxZ: Double ): Boolean = {
-     x >= minX && x <= maxX && y >= minY && y <= maxY && z >= minZ && z <= maxZ
+    x >= minX && x <= maxX && y >= minY && y <= maxY && z >= minZ && z <= maxZ
   }
 
   def isNeighbor(x1: Int, y1: Int, z1:Int, x2: Int, y2: Int, z2:Int): Boolean = {
@@ -58,8 +58,8 @@ object HotcellUtils {
 
   def getNeighbors(x: Int, y: Int, z:Int, MinX:Double, MinY:Double, MinZ:Double, MaxX: Double, MaxY:Double, MaxZ:Double): Int = {
 
-    val xEdge = if (x >= MaxX || x <= MinX ) 1 else 0
-    val yEdge = if (y >= MaxY || y <= MinY )  1 else 0
+    val xEdge = if (x == MaxX || x == MinX ) 1 else 0
+    val yEdge = if (y == MaxY || y == MinY )  1 else 0
     val zEdge = if (z == MaxZ || z == MinZ )  1 else 0
     val total = xEdge + yEdge + zEdge
 
@@ -76,7 +76,9 @@ object HotcellUtils {
   }
 
 
-  def GScore(mean: Double,s: Double,numOfNb: Int, sumAttr: Int, numCells: Int): Double = {
+  def GScore(mean: Double,s: Double,numOfNb1: Int, sumAttr1: Int, numCells: Int): Double = {
+    var sumAttr: Double = sumAttr1.toDouble
+    var numOfNb: Double = numOfNb1.toDouble
     val numerator = sumAttr-(mean*numOfNb)
     val denominator = s*Math.sqrt((numCells*numOfNb - numOfNb*numOfNb)/(numCells-1))
     numerator/denominator
